@@ -9,22 +9,40 @@ get_header();
 
 <main id="site-content">
 	<div class="container section-inner">
-
-	<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title() ?></a></h2>
-
-<!-- <?php the_content() ?> -->
+		<header class="header">
+			<h1 class="header__title"><?php the_title() ?></h1>
+		</header>
 
 
 	<section class="configurator">
 			
 		<div class="configurator__element">
-				<h2><?php echo CFS()->get('configuratorModelTitle'); ?></h2>
+			<header class="configurator__header">	
+			<h2><?php echo CFS()->get('modelConfiguratorTitle'); ?></h2>
+			</header>
+
+			<section class="configurator__pictures">
+			</section>
+
+			<aside class="configurator__switches">
+			<?php
+					$arrayOfModel = CFS()->get('modelOptions');
+					foreach ($arrayOfModel as $row) {
+			?>
+				<label class="configurator__switch"><?php echo $row['modelOptionTitle']; ?>
+					<div class="configurator__switch__slider">
+						<input type="checkbox" data-cost="<?php echo $row['modelOptionCost']; ?>" data-checked="false" data-url="<?php echo $row['modelOptionImage'] ?>">
+						<span class="slider"></span>
+					</div>
+				</label>
+			<?php } ?>
+			</aside>
 		</div>
 			
 		<div class="configurator__element">
-			<!-- <h2><?php echo CFS()->get('configuratorAdditionalTitle'); ?></h2>
-			 -->
-			<?php while (have_posts()) : the_post(); ?>
+			<header class="configurator__header">	
+				<h2><?php echo CFS()->get('configuratorAdditionalTitle'); ?></h2>
+			</header>
 
 				<section class="configurator__pictures">
 					<figure class="configurator__figure">
@@ -37,38 +55,19 @@ get_header();
 
 				<aside class="configurator__switches">
 					<?php
-					$array = CFS()->get('configuratorAdditional');
-
-					$i = -1;
-					foreach ($array as $row) {
-						$i++;
-						
+					$arrayOfAdditional = CFS()->get('configuratorAdditional');
+					foreach ($arrayOfAdditional as $row) {
 					?>
 						<label class="configurator__switch"><?php echo $row['configuratorAdditionalName']; ?>
-						<div class="configurator__switch__slider">
-							<input type="checkbox" data-cost="<?php echo $row['configuratorAdditionalCost']; ?>" data-checked="false" data-positionX="<?php echo $row['configuratorAdditionalPicturePositionX']."%"; ?>" data-positionY="<?php echo $row['configuratorAdditionalPicturePositionY']."%"; ?>" data-id="<?php echo $i; ?>" data-url="<?php echo $row['configuratorAdditionalPicture'] ?>">
-							<span class="slider"></span>
-					</div>
+							<div class="configurator__switch__slider">
+								<input type="checkbox" data-cost="<?php echo $row['configuratorAdditionalCost']; ?>" data-checked="false" data-positionX="<?php echo $row['configuratorAdditionalPicturePositionX']."%"; ?>" data-positionY="<?php echo $row['configuratorAdditionalPicturePositionY']."%"; ?>"  data-url="<?php echo $row['configuratorAdditionalPicture'] ?>">
+								<span class="slider"></span>
+							</div>
 						</label>
 
-
-					<?php
-
-
-					}
-
-					?>
+					<?php } ?>
 				</aside>
-			
-			
 
-
-			<?php endwhile; ?>
-
-			<?php //get_sidebar(); 
-			?>
-
-			
 				</div>
 
 				<footer class="configurator__footer">

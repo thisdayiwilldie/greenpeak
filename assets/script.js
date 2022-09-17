@@ -41,14 +41,14 @@ const totalPrice = () => [...document.querySelectorAll('.configurator__switch__s
             })
 
         }
+      
+            configurePictureLayers.innerHTML = configurePictureLayersArray.map((item, index) => {
+            
+                return `<figure class="configurator__figure configurator__figure--layer"><img class="configurator__pictures__layer" src=${item.url} style="left:${item.positionX}; top:${item.positionY}" id="${index}"/></figure>`
 
-        configurePictureLayers.innerHTML = configurePictureLayersArray.map((item, index) => {
 
-            return `<figure class="configurator__figure configurator__figure--layer"><img class="configurator__pictures__layer" src=${item.url} style="left:${item.positionX}; top:${item.positionY}" id="${index}"/></figure>`
-
-
-        }).join('')
-
+            }).join('')
+       
         changeSizeLayers()
 
     });
@@ -57,12 +57,12 @@ const totalPrice = () => [...document.querySelectorAll('.configurator__switch__s
 
 
 
-document.querySelector('.configurator__switches').addEventListener('change', (e) => {
-    configuratorPrice.textContent = totalPrice()
-
-
-});
-
+document.querySelectorAll('.configurator__switches').forEach((element)=>{
+    element.addEventListener('change', (e) => {
+        configuratorPrice.textContent = totalPrice()
+    });
+    
+})
 
 
 
@@ -118,26 +118,3 @@ onresize = (event) => {
 
 
 
-
-
-
-// const output = document.querySelector('.configurator__cost');
-// output.innerText = 0
-
-// const totalPrice = () => [...document.querySelectorAll('.switch input[type=checkbox]:checked')]
-//   .reduce((acc, {
-//     dataset: {
-//       cost
-//     }
-//   }) => acc + + cost, 0);
-
-//   const configuratorPicture = () => [...document.querySelectorAll('.switch input[type=checkbox]:checked')]
-//   .reduce((acc, {
-//     dataset: {
-//       url
-//     }
-//   }) => url, 0);
-
-// document.querySelector('.configurator__switches').addEventListener('change', () => output.textContent = totalPrice());
-
-// document.querySelector('.configurator__switches').addEventListener('change', () => document.querySelector('.configurator__picture').src = configuratorPicture());

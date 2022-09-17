@@ -8,21 +8,38 @@ Description: A Minimal Wordpress Theme.
 Tags: minimal, simple, responsive, light-weight
 Text Domain: greenpeak
 */
-a {
-	color: #A0A0A0;
-	text-decoration: none;
+
+
+
+
+.header__title{
+	text-align: center;
 }
 
+
+
+
+/* ---------------- Configurator ---------------- */
+
+/*Configurator - Model additional*/
 .configurator__element{
-	display:grid;
-	grid-template-columns: 1fr;
+	display:flex;
+	flex-direction: column;
+
+
 }
 
+.configurator__header {
+	width:100%;
+	text-align:center;
+	grid-area:gridTitle;
+}
 .configurator__switches {
 	display:flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content:center;
+	grid-area:gridSettings;
 }
 .configurator__switch{
 	display:flex;
@@ -97,6 +114,7 @@ a {
 	padding:0;
 	margin:0;
 	position: relative;
+	grid-area: gridView;
 }
 .configurator__pictures__layers{
    
@@ -136,11 +154,37 @@ a {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (min-width:1000px){
 	
 	.configurator__element{
-		display:grid;
-		grid-template-columns: 1fr 1fr;
-	}
+		  display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: auto 1fr;
+			gap: 0px 0px;
+			grid-auto-flow: row;
+			grid-template-areas: 
+			". gridTitle"
+			"gridView gridSettings"; 
+
+		  }
+		  
+		  .title { grid-area: title; }
+		  
+		  .a { grid-area: a; }
+		  
+		  .b { grid-area: b; }
+		  
+
 
 }
