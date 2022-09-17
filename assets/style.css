@@ -1,0 +1,146 @@
+/*
+Theme Name: greenpeak
+Theme URI: http://localhost:85/wordpress/themes/greenpeak
+Version: 0.1
+Author: MarekGolonka
+Author URI: https://marekgolonka.pl/
+Description: A Minimal Wordpress Theme.
+Tags: minimal, simple, responsive, light-weight
+Text Domain: greenpeak
+*/
+a {
+	color: #A0A0A0;
+	text-decoration: none;
+}
+
+.configurator__element{
+	display:grid;
+	grid-template-columns: 1fr;
+}
+
+.configurator__switches {
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content:center;
+}
+.configurator__switch{
+	display:flex;
+	flex-direction: row-reverse;
+	align-items:center;
+	margin-bottom:3rem;
+}
+
+.configurator__switch__slider {
+	position: relative;
+	display: inline-block;
+	width: 120px;
+	height: 2rem;
+	margin-right:3rem;
+  }
+  
+  .configurator__switch__slider input { 
+	opacity: 0;
+	width: 0;
+	height: 0;
+  }
+  
+  .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+  }
+  
+  .slider:before {
+	position: absolute;
+	content: "";
+	height: 1.6rem;
+	width: 50%;
+	left: 2px;
+	bottom: 2px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+  }
+  
+  input:checked + .slider {
+	background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+	box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+	transform: translateX(94%);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+	border-radius: 34px;
+  }
+  
+  .slider.round:before {
+	border-radius: 50%;
+  }
+
+
+
+  
+.configurator__pictures{
+	padding:0;
+	margin:0;
+	position: relative;
+}
+.configurator__pictures__layers{
+   
+}
+.configurator__figure {
+	width:100%;
+}
+.configurator__figure--layer{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	background:transparent;
+}
+.configurator__picture{
+	width:100%;
+	max-width:100%;
+} 
+
+.configurator__pictures__layer {
+	position:absolute;
+	transform-origin:top left;
+}
+
+.configurator__footer{
+	position:fixed;
+	display:flex;
+	justify-content: center;
+	bottom:0;
+	left:0;
+	width:100%;
+	background:#FFFFFF;
+	padding:1rem;
+	border-top:1px solid #f9f9f9;
+}
+
+
+
+@media screen and (min-width:1000px){
+	
+	.configurator__element{
+		display:grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+}
