@@ -25,7 +25,7 @@ Text Domain: greenpeak
 .configurator__element{
 	display:flex;
 	flex-direction: column;
-
+	margin-bottom:8rem;
 
 }
 
@@ -48,7 +48,11 @@ Text Domain: greenpeak
 	margin-bottom:3rem;
 }
 
-.configurator__switch__slider {
+.configurator__button {
+	
+  }
+
+  .configurator__button--slider{
 	position: relative;
 	display: inline-block;
 	width: 120px;
@@ -56,13 +60,13 @@ Text Domain: greenpeak
 	margin-right:3rem;
   }
   
-  .configurator__switch__slider input { 
+  .configurator__checkbox{ 
 	opacity: 0;
 	width: 0;
 	height: 0;
   }
   
-  .slider {
+  .configurator__checkbox__slider {
 	position: absolute;
 	cursor: pointer;
 	top: 0;
@@ -74,7 +78,7 @@ Text Domain: greenpeak
 	transition: .4s;
   }
   
-  .slider:before {
+  .configurator__checkbox__slider:before {
 	position: absolute;
 	content: "";
 	height: 1.6rem;
@@ -86,24 +90,24 @@ Text Domain: greenpeak
 	transition: .4s;
   }
   
-  input:checked + .slider {
+  input:checked + .configurator__checkbox__slider {
 	background-color: #2196F3;
   }
   
-  input:focus + .slider {
+  input:focus + .configurator__checkbox__slider {
 	box-shadow: 0 0 1px #2196F3;
   }
   
-  input:checked + .slider:before {
+  input:checked + .configurator__checkbox__slider:before {
 	transform: translateX(94%);
   }
   
-  /* Rounded sliders */
-  .slider.round {
+  /* Rounded configurator__checkbox__sliders */
+  .configurator__checkbox__slider.round {
 	border-radius: 34px;
   }
   
-  .slider.round:before {
+  .configurator__checkbox__slider.round:before {
 	border-radius: 50%;
   }
 
@@ -116,7 +120,7 @@ Text Domain: greenpeak
 	position: relative;
 	grid-area: gridView;
 }
-.configurator__pictures__layers{
+.configurator__pictures__additionals{
    
 }
 .configurator__figure {

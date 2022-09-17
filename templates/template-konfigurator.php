@@ -16,12 +16,13 @@ get_header();
 
 	<section class="configurator">
 			
-		<div class="configurator__element">
+		<div class="configurator__element models">
 			<header class="configurator__header">	
 			<h2><?php echo CFS()->get('modelConfiguratorTitle'); ?></h2>
 			</header>
 
 			<section class="configurator__pictures">
+				<div class="configurator__pictures__models">
 			</section>
 
 			<aside class="configurator__switches">
@@ -30,16 +31,15 @@ get_header();
 					foreach ($arrayOfModel as $row) {
 			?>
 				<label class="configurator__switch"><?php echo $row['modelOptionTitle']; ?>
-					<div class="configurator__switch__slider">
-						<input type="checkbox" data-cost="<?php echo $row['modelOptionCost']; ?>" data-checked="false" data-url="<?php echo $row['modelOptionImage'] ?>">
-						<span class="slider"></span>
+					<div class="configurator__button">
+						<input type="checkbox" class="configurator__radio" data-cost="<?php echo $row['modelOptionCost']; ?>" data-checked="false" data-url="<?php echo $row['modelOptionImage'] ?>">
 					</div>
 				</label>
 			<?php } ?>
 			</aside>
 		</div>
 			
-		<div class="configurator__element">
+		<div class="configurator__element additionals">
 			<header class="configurator__header">	
 				<h2><?php echo CFS()->get('configuratorAdditionalTitle'); ?></h2>
 			</header>
@@ -48,8 +48,8 @@ get_header();
 					<figure class="configurator__figure">
 						<img src="<?php echo CFS()->get('configuratorAdditionalPatternImage'); ?>" class="configurator__picture" />
 					</figure>
-					<div class="configurator__pictures__layers">
-						<!-- <img src="" class="configurator__picture__extension"/> -->
+					<div class="configurator__pictures__additionals">
+					
 					</div>
 				</section>
 
@@ -59,9 +59,9 @@ get_header();
 					foreach ($arrayOfAdditional as $row) {
 					?>
 						<label class="configurator__switch"><?php echo $row['configuratorAdditionalName']; ?>
-							<div class="configurator__switch__slider">
-								<input type="checkbox" data-cost="<?php echo $row['configuratorAdditionalCost']; ?>" data-checked="false" data-positionX="<?php echo $row['configuratorAdditionalPicturePositionX']."%"; ?>" data-positionY="<?php echo $row['configuratorAdditionalPicturePositionY']."%"; ?>"  data-url="<?php echo $row['configuratorAdditionalPicture'] ?>">
-								<span class="slider"></span>
+							<div class="configurator__button configurator__button--slider">
+								<input type="checkbox" class="configurator__checkbox" data-cost="<?php echo $row['configuratorAdditionalCost']; ?>" data-checked="false" data-positionX="<?php echo $row['configuratorAdditionalPicturePositionX']."%"; ?>" data-positionY="<?php echo $row['configuratorAdditionalPicturePositionY']."%"; ?>"  data-url="<?php echo $row['configuratorAdditionalPicture'] ?>">
+								<span class="configurator__checkbox__slider"></span>
 							</div>
 						</label>
 

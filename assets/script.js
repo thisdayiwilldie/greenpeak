@@ -2,14 +2,16 @@ const configuratorPrice = document.querySelector('.configurator__cost');
 configuratorPrice.innerText = 0
 
 const configuratorPicture = document.querySelector('.configurator__picture__extension')
-// const primaryPictureURL =  document.querySelector('.configurator__picture__extension').src
-const configurePictureLayers = document.querySelector('.configurator__pictures__layers')
+
+const configurePictureModels = document.querySelector('.configurator__pictures__models')
+const configurePictureAdditionals = document.querySelector('.configurator__pictures__additionals')
+
 let configurePictureLayersArray = [];
 
 
 
 
-const totalPrice = () => [...document.querySelectorAll('.configurator__switch__slider input[type=checkbox]:checked')]
+const totalPrice = () => [...document.querySelectorAll('.configurator__button input:checked')]
     .reduce((acc, {
         dataset: {
             cost
@@ -19,50 +21,82 @@ const totalPrice = () => [...document.querySelectorAll('.configurator__switch__s
 
 
 
-[...document.querySelectorAll(".configurator__switches input")].forEach((button, index) => {
-
-    button.addEventListener('click', () => {
-        let configurePictureStructure = {
-            id: index,
-            url: button.dataset.url,
-            positionX: button.dataset.positionx,
-            positionY: button.dataset.positiony,
-        }
-
-        if (button.dataset.checked == "false") {
-            button.dataset.checked = true
-            configurePictureLayersArray.push(configurePictureStructure)
-
-
-        } else {
-            button.dataset.checked = false
-            configurePictureLayersArray = configurePictureLayersArray.filter(function (el) {
-                return el.id != index
-            })
-
-        }
+const configurationPicturesTemplate = (htmlStructure, whichPlace, nameWhereContentWillIncluded) => {
       
-            configurePictureLayers.innerHTML = configurePictureLayersArray.map((item, index) => {
-            
-                return `<figure class="configurator__figure configurator__figure--layer"><img class="configurator__pictures__layer" src=${item.url} style="left:${item.positionX}; top:${item.positionY}" id="${index}"/></figure>`
+    whichPlace.innerHTML = configurePictureLayersArray.map((item, index) => {
+        if(item.name == nameWhereContentWillIncluded)
+            return htmlStructure(item,index)
+
+        // if(item.name == 'configurator__element models')
+        //     return htmlStructure(item,index)
+
+    }).join('')
 
 
-            }).join('')
-       
-        changeSizeLayers()
-
-    });
-});
+}
 
 
 
+const configuratorSwitch = (className) => {
 
-document.querySelectorAll('.configurator__switches').forEach((element)=>{
-    element.addEventListener('change', (e) => {
-        configuratorPrice.textContent = totalPrice()
-    });
+    [...document.querySelectorAll(className)].forEach((button, index) => {
+
+        button.addEventListener('click', (e) => {
+            let configurePictureStructure = {
+                name: button.labels[0].parentNode.parentNode.className,
+                id: index,
+                url: button.dataset.url,
+                positionX: button.dataset.positionx,
+                positionY: button.dataset.positiony,
+            }
     
-})
+            if (button.dataset.checked == "false") {
+                button.dataset.checked = true
+                configurePictureLayersArray.push(configurePictureStructure)
+                    
+    
+            } else {
+                button.dataset.checked = false
+              
+                    configurePictureLayersArray = configurePictureLayersArray.filter(function (el) {
+                        return el.id != index
+                    })
+                    // return document.getElementById(`${index}`).parentElement.remove()
+                    
+               
+            }
+           
+       
+
+            //Template Pictures for Models
+            if(configurePictureStructure.name == "configurator__element models")
+            configurationPicturesTemplate((item, index)=> `<figure class="configurator__figure configurator__figure--layer">
+                <img class="configurator__pictures__layer" src=${item.url} style="left:${item.positionX}; top:${item.positionY}" id="${index}"/>
+                </figure>`, 
+                configurePictureModels, 'configurator__element models')
+
+
+            //Template Pictures for Additionals
+            if(configurePictureStructure.name == "configurator__element additionals")
+            configurationPicturesTemplate((item, index)=> `<figure class="configurator__figure configurator__figure--layer">
+                <img class="configurator__pictures__layer" src=${item.url} style="left:${item.positionX}; top:${item.positionY}" id="${index}"/>
+                </figure>`, 
+                configurePictureAdditionals, 'configurator__element additionals')
+            
+
+            changeSizeLayers()
+    
+        });
+    });
+}
+
+
+//If clicked od Model (radio)
+configuratorSwitch(".configurator__radio")
+
+//If clicked on Additionals (checkbox)
+configuratorSwitch(".configurator__checkbox")
+
 
 
 
@@ -74,12 +108,15 @@ const scalePictureLayer = (getChangeSize) => {
     })
 }
 
+
+
 const changeSizeLayers = (size = 600, changeSize, imageContainer) => {
 
     imageContainer = document.querySelector(".configurator__pictures").clientWidth
     if (document.querySelector(".configurator__pictures").clientWidth != size) {
         changeSize = imageContainer / size
         scalePictureLayer(changeSize)
+       
 
     } else {
         changeSize = 1
@@ -98,6 +135,14 @@ onresize = (event) => {
 
 
 
+
+
+document.querySelectorAll('.configurator__switches').forEach((element)=>{
+    element.addEventListener('change', (e) => {
+        configuratorPrice.textContent = totalPrice()
+    });
+    
+})
 
 
 
