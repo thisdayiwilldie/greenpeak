@@ -31,27 +31,70 @@ Text Domain: greenpeak
 
 .configurator__header {
 	width:100%;
-	text-align:center;
 	grid-area:gridTitle;
+}
+
+.configurator__title{
+	padding-left:0;
+	text-align:center;
 }
 .configurator__switches {
 	display:flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content:center;
+	justify-content:flex-start;
 	grid-area:gridSettings;
+	margin-top:5rem;
+	padding:2rem;
+}
+
+.configurator__switches--second{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
 }
 .configurator__switch{
 	display:flex;
 	flex-direction: row-reverse;
 	align-items:center;
 	margin-bottom:3rem;
+	cursor:pointer;
+
 }
 
+.configurator__switch--second{
+
+}
+.configurator__switch__title{
+	/* max-width:80%; */
+	font-weight:900;
+	font-size:2.4rem;
+}
+.configurator__switch__description{
+	font-weight:400;
+	font-size:2rem;
+	color:#c1ce31;
+}
 .configurator__button {
-	
+	background: #e9e9e9;;
+	height:20px;
+	min-width:60px;
+	align-self:flex-start;
+	margin-right:3rem;
+	margin-top:1rem;
   }
 
+  .configurator__button:hover{
+	background:#e0e0e0;
+  }
+  .configurator__button--active{
+	background:#c1ce31;
+	border:#e0e0e0 3px solid;
+  }
+.configurator__radio{
+	display:none;
+}
   .configurator__button--slider{
 	position: relative;
 	display: inline-block;
@@ -120,9 +163,16 @@ Text Domain: greenpeak
 	position: relative;
 	grid-area: gridView;
 }
+
+.configurator__pictures__models{
+	max-width:60%;
+	margin: 0 auto;	
+}
 .configurator__pictures__additionals{
    
 }
+
+
 .configurator__figure {
 	width:100%;
 }
@@ -152,8 +202,9 @@ Text Domain: greenpeak
 	left:0;
 	width:100%;
 	background:#FFFFFF;
-	padding:1rem;
-	border-top:1px solid #f9f9f9;
+	padding:2rem;
+	border-top:1px solid #e9e9e9;
+	z-index: 999999;
 }
 
 
@@ -180,14 +231,32 @@ Text Domain: greenpeak
 			grid-template-areas: 
 			". gridTitle"
 			"gridView gridSettings"; 
-
+			margin-bottom:15rem;
 		  }
-		  
-		  .title { grid-area: title; }
-		  
-		  .a { grid-area: a; }
-		  
-		  .b { grid-area: b; }
+		  .configurator__title{
+			padding-left:16rem;
+			text-align:inherit;
+		  }
+		  .configurator__switches {
+			padding:3rem 16rem;
+			padding-right: 5rem;
+			margin-top:0;
+			align-items: flex-start;
+		}
+
+		.configurator__switches--second{
+			padding-left:8rem;
+		}
+
+		.configurator__switch__title {
+			font-size:3rem;
+		}
+
+		.configurator__switch__description{
+			font-size:2.6rem;
+		}
+
+		
 		  
 
 

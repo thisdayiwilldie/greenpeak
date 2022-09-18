@@ -11,10 +11,6 @@ let configurePictureLayersArray = [];
 
 
 
-
-
-
-
 const configurationPicturesTemplate = (htmlStructure, whichPlace, nameWhereContentWillIncluded) => {
       
     whichPlace.innerHTML = configurePictureLayersArray.map((item, index) => {
@@ -30,17 +26,23 @@ const configurationPicturesTemplate = (htmlStructure, whichPlace, nameWhereConte
 
 
 const configuratorSwitch = (className) => {
-
     [...document.querySelectorAll(className)].forEach((button, index) => {
 
         button.addEventListener('click', (e) => {
+   
+
             let configurePictureStructure = {
                 name: button.labels[0].parentNode.parentNode.className,
                 id: index,
                 url: button.dataset.url,
                 positionX: button.dataset.positionx,
                 positionY: button.dataset.positiony,
+                otherOptions: button.dataset.other_options,
+
             }
+
+            console.log(configurePictureStructure.otherOptions)
+           
             if (button.dataset.checked == "false") {
                 button.dataset.checked = true
                     if(configurePictureStructure.name == "configurator__element models"){
@@ -76,8 +78,28 @@ const configuratorSwitch = (className) => {
                
             }
            
-       
+        
 
+                // if(button.className == 'configurator__radio configurator__radio--trim')
+                //     {      
+                //         document.querySelectorAll(".configurator__switches.configurator__switches--second").forEach(element=>{
+                //         element.style.display = "flex"
+                //         console.log(element)
+                //     })  
+                //     }
+
+                //     else
+                //         {      
+                //             document.querySelectorAll(".configurator__switches.configurator__switches--second").forEach(element=>{
+                //             element.style.display = "none"
+                //             console.log(element)
+                //         })  
+                //     }
+
+              
+
+                
+           
             //Template Pictures for Models
             if(configurePictureStructure.name == "configurator__element models"){
             configurationPicturesTemplate((item, index)=> {
@@ -97,18 +119,29 @@ const configuratorSwitch = (className) => {
 
              //Template Pictures for Trims
              if(configurePictureStructure.name == "configurator__element trims"){
+                let imagesInGallery = [configurePictureStructure.url.split(" ")][0].slice(0, -1)
+                // let otherOptions = [configurePictureStructure.otherOptions.split(" ")][0].slice(0, -1)
+                
                 configurationPicturesTemplate((item, index)=> {
-                    return `<figure class="configurator__figure">
-                    <a href="${item.url}" data-lbwps-width="0" data-lbwps-srcsmall="${item.url}"><img class="configurator__picture" src=${item.url} id="${index}"/></a>
+                    return imagesInGallery.map((imageURL)=>{
+                       
+                  
+                    return `<figure class="configurator__figure swiper-slide">
+                    <a class="swiper-slide" href="${imageURL}" data-lbwps-width="0" data-lbwps-srcsmall="${imageURL}"><img class="configurator__picture" src=${imageURL} id="${index}"/></a>
                     </figure>`
-                    
+                }).join('')
                 }, 
                     configurePictureTrims, 'configurator__element trims')
     
-                        document.querySelectorAll(".configurator__radio--trim").forEach((element)=>{
+                        document.querySelectorAll(".configurator__radio--trim").forEach((element, index)=>{
                             element.checked = false
+                            // if(index == 1){
+                            //   console.log(element.parentElement)
+                            // }
                         })
                      button.checked = true
+                       
+
                 }
 
 
@@ -122,7 +155,6 @@ const configuratorSwitch = (className) => {
             
 
             changeSizeLayers()
-    
         });
     });
 }
@@ -208,11 +240,6 @@ document.querySelectorAll('.configurator__switches').forEach((element)=>{
 
 
 
-
-
-
-
-
-
+const swiper = new Swiper(".swiper", {});
 
 

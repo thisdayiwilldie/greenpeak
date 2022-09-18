@@ -18,7 +18,7 @@ get_header();
 			
 		<div class="configurator__element models">
 			<header class="configurator__header">	
-			<h2><?php echo CFS()->get('modelConfiguratorTitle'); ?></h2>
+			<h2 class="configurator__title"><?php echo CFS()->get('modelConfiguratorTitle'); ?></h2>
 			</header>
 
 			<section class="configurator__pictures">
@@ -30,18 +30,83 @@ get_header();
 					$arrayOfModel = CFS()->get('modelOptions');
 					foreach ($arrayOfModel as $row) {
 			?>
-				<label class="configurator__switch"><?php echo $row['modelOptionTitle']; ?>
-					<div class="configurator__button">
-						<input type="checkbox" class="configurator__radio" data-cost="<?php echo $row['modelOptionCost']; ?>" data-checked="false" data-url="<?php echo $row['modelOptionImage'] ?>">
+				<label class="configurator__switch">
+					<div class="configurator__switch__title">
+					<?php echo $row['modelOptionTitle']; ?>
+					<p class="configurator__switch__description"><?php echo $row['modelOptionDescription']; ?></p>
+					</div>
+					<div class="configurator__button configurator__button--model">
+						<input type="checkbox" class="configurator__radio configurator__radio--model" data-cost="<?php echo $row['modelOptionCost']; ?>" data-checked="false" data-url="<?php echo $row['modelOptionImage'] ?>">
 					</div>
 				</label>
 			<?php } ?>
 			</aside>
 		</div>
+
+
+		<div class="configurator__element trims">
+			<header class="configurator__header">	
+			<h2 class="configurator__title"><?php echo CFS()->get('trimConfiguratorTitle'); ?></h2>
+			</header>
+
+			<section class="configurator__pictures  swiper-container swiper ">
+				<div class="configurator__pictures__trims  swiper-wrapper">
+				
+			</section>
+
+			<aside class="configurator__switches">
+			<?php
+					$arrayOftrim = CFS()->get('trimOptions');
+					// foreach ($arrayOftrim as $index => $row) {
+					// 	$arrayOfTrimGallery =  $row['trimOptionGallery'][0];
+							
+					// }
+					foreach ($arrayOftrim as $index => $row) {
+					$arrayOfGallery = $arrayOftrim[$index]['trimOptionGallery'];
+					$arrayOftrimIfSecondOptionChoosed = $arrayOftrim[$index]['trimIfSecondOptionChoosed'];
+					
+			?>
+				<label class="configurator__switch">
+					<div class="configurator__switch__title">
+					<?php echo $row['trimOptionTitle']; ?>
+					<p class="configurator__switch__description"><?php echo $row['trimOptionDescription']; ?></p>
+					
+						
+						
+					</div>
+					<div class="configurator__button configurator__button--trim">
+						<input type="checkbox" class="configurator__radio configurator__radio--trim" data-cost="<?php echo $row['trimOptionCost']; ?>" data-checked="false" data-url="<?php 
+								foreach($arrayOfGallery as $rowGallery){
+									echo ($rowGallery['trimOptionImage']." ");
+								}
+						?>"
+
+							>
+								
+					</div>
+				</label>
+					<div class="configurator__switches--second">
+						<?php 
+									foreach($arrayOftrimIfSecondOptionChoosed as $rowSecondOptionsOption){?>
+										<label class="configurator__switch">
+											<span class="configurator__switch__title"><?php echo $rowSecondOptionsOption['trimIfSecondOptionChoosedOption'];?></span>
+											<div class="configurator__button configurator__button--second configurator__button--trim ">
+												<input type="checkbox" class="configurator__radio configurator__button--second configurator__radio--trim" data-cost="<?php echo $row['trimOptionCost']; ?>" data-checked="false">
+													
+										</div>
+										</label>
+								<?php } ?>
+					</div>
+
+				<?php 
+								
+				} ?>
+			</aside>
+		</div>
 			
 		<div class="configurator__element additionals">
 			<header class="configurator__header">	
-				<h2><?php echo CFS()->get('configuratorAdditionalTitle'); ?></h2>
+				<h2 class="configurator__title"><?php echo CFS()->get('configuratorAdditionalTitle'); ?></h2>
 			</header>
 
 				<section class="configurator__pictures">
@@ -71,7 +136,7 @@ get_header();
 				</div>
 
 				<footer class="configurator__footer">
-				Suma:<div class="configurator__cost"></div>
+				Suma: <div class="configurator__cost"></div>zł
 				<div class="test"></div>
 			</footer>
 		</section>
@@ -81,3 +146,5 @@ get_header();
 <?php get_template_part('template-parts/footer-menus-widgets'); ?>
 
 <?php get_footer(); ?>
+
+</script>
