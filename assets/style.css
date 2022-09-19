@@ -54,9 +54,14 @@ Text Domain: greenpeak
 	align-items: flex-start;
 
 }
+
 .configurator__switch{
+	padding:0;
+}
+.configurator__label{
 	display:flex;
 	flex-direction: row-reverse;
+	justify-content: flex-end;
 	align-items:center;
 	margin-bottom:3rem;
 	cursor:pointer;
@@ -64,7 +69,7 @@ Text Domain: greenpeak
 }
 
 .configurator__switch--second{
-
+	display:none;
 }
 .configurator__switch__title{
 	/* max-width:80%; */
@@ -246,6 +251,10 @@ Text Domain: greenpeak
 
 		.configurator__switches--second{
 			padding-left:8rem;
+		}
+
+		.configurator__switches--hide {
+			display:none;
 		}
 
 		.configurator__switch__title {

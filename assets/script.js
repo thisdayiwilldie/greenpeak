@@ -29,10 +29,9 @@ const configuratorSwitch = (className) => {
     [...document.querySelectorAll(className)].forEach((button, index) => {
 
         button.addEventListener('click', (e) => {
-   
 
             let configurePictureStructure = {
-                name: button.labels[0].parentNode.parentNode.className,
+                name: button.labels[0].parentNode.parentNode.parentNode.className,
                 id: index,
                 url: button.dataset.url,
                 positionX: button.dataset.positionx,
@@ -41,10 +40,11 @@ const configuratorSwitch = (className) => {
 
             }
 
-            console.log(configurePictureStructure.otherOptions)
            
             if (button.dataset.checked == "false") {
                 button.dataset.checked = true
+
+                    //Models
                     if(configurePictureStructure.name == "configurator__element models"){
                         configurePictureLayersArray.pop()
                          button.dataset.checked = false
@@ -54,8 +54,18 @@ const configuratorSwitch = (className) => {
 
                     }
 
+
+                    //Trims
                     if(configurePictureStructure.name == "configurator__element trims"){
+                            if(button.labels[0].nextElementSibling.className == 'configurator__switch configurator__switch--second'){
+
+                                document.querySelectorAll(".configurator__switch--second").forEach(element=>{
+                                    element.style.display = "none"
+                                })
+                               button.labels[0].nextElementSibling.style.display = "block"
+                        }
                         configurePictureLayersArray.pop()
+
                          button.dataset.checked = false
                          
                         document.querySelectorAll(".configurator__button--trim").forEach(element=> element.classList.remove("configurator__button--active"))
@@ -65,38 +75,21 @@ const configuratorSwitch = (className) => {
                     
                 configurePictureLayersArray.push(configurePictureStructure)
 
+                console.log(configurePictureLayersArray)
                     
     
             } else {
+                //removing element from Array
                 button.dataset.checked = false
-              
                     configurePictureLayersArray = configurePictureLayersArray.filter(function (el) {
                         return el.id != index
                     })
-                    // return document.getElementById(`${index}`).parentElement.remove()
                     
                
             }
-           
-        
+     
+          
 
-                // if(button.className == 'configurator__radio configurator__radio--trim')
-                //     {      
-                //         document.querySelectorAll(".configurator__switches.configurator__switches--second").forEach(element=>{
-                //         element.style.display = "flex"
-                //         console.log(element)
-                //     })  
-                //     }
-
-                //     else
-                //         {      
-                //             document.querySelectorAll(".configurator__switches.configurator__switches--second").forEach(element=>{
-                //             element.style.display = "none"
-                //             console.log(element)
-                //         })  
-                //     }
-
-              
 
                 
            
@@ -153,7 +146,6 @@ const configuratorSwitch = (className) => {
                 </figure>`, 
                 configurePictureAdditionals, 'configurator__element additionals')
             
-
             changeSizeLayers()
         });
     });
