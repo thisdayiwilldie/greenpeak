@@ -30,7 +30,8 @@ get_header();
 					$arrayOfModel = CFS()->get('modelOptions');
 					foreach ($arrayOfModel as $row) {
 			?>
-				<label class="configurator__switch">
+			<section class="configurator__switch">
+				<label class="configurator__label">
 					<div class="configurator__switch__title">
 					<?php echo $row['modelOptionTitle']; ?>
 					<p class="configurator__switch__description"><?php echo $row['modelOptionDescription']; ?></p>
@@ -39,6 +40,7 @@ get_header();
 						<input type="checkbox" class="configurator__radio configurator__radio--model" data-cost="<?php echo $row['modelOptionCost']; ?>" data-checked="false" data-url="<?php echo $row['modelOptionImage'] ?>">
 					</div>
 				</label>
+			</section>
 			<?php } ?>
 			</aside>
 		</div>
@@ -55,51 +57,54 @@ get_header();
 			</section>
 
 			<aside class="configurator__switches">
+
 			<?php
 					$arrayOftrim = CFS()->get('trimOptions');
-					// foreach ($arrayOftrim as $index => $row) {
-					// 	$arrayOfTrimGallery =  $row['trimOptionGallery'][0];
-							
-					// }
+				
 					foreach ($arrayOftrim as $index => $row) {
 					$arrayOfGallery = $arrayOftrim[$index]['trimOptionGallery'];
 					$arrayOftrimIfSecondOptionChoosed = $arrayOftrim[$index]['trimIfSecondOptionChoosed'];
 					
 			?>
-				<label class="configurator__switch">
-					<div class="configurator__switch__title">
-					<?php echo $row['trimOptionTitle']; ?>
-					<p class="configurator__switch__description"><?php echo $row['trimOptionDescription']; ?></p>
-					
+			<section class="configurator__switch">
+					<label class="configurator__label">
+						<div class="configurator__switch__title">
+						<?php echo $row['trimOptionTitle']; ?>
+						<p class="configurator__switch__description"><?php echo $row['trimOptionDescription']; ?></p>
 						
-						
-					</div>
-					<div class="configurator__button configurator__button--trim">
-						<input type="checkbox" class="configurator__radio configurator__radio--trim" data-cost="<?php echo $row['trimOptionCost']; ?>" data-checked="false" data-url="<?php 
-								foreach($arrayOfGallery as $rowGallery){
-									echo ($rowGallery['trimOptionImage']." ");
-								}
-						?>"
+							
+							
+						</div>
+						<div class="configurator__button configurator__button--trim">
+							<input type="checkbox" class="configurator__radio configurator__radio--trim" data-cost="<?php echo $row['trimOptionCost']; ?>" data-checked="false" data-url="<?php 
+									foreach($arrayOfGallery as $rowGallery){
+										echo ($rowGallery['trimOptionImage']." ");
+									}
+							?>"
 
-							>
-								
-					</div>
-				</label>
-					<div class="configurator__switches--second">
-						<?php 
-									foreach($arrayOftrimIfSecondOptionChoosed as $rowSecondOptionsOption){?>
-										<label class="configurator__switch">
-											<span class="configurator__switch__title"><?php echo $rowSecondOptionsOption['trimIfSecondOptionChoosedOption'];?></span>
-											<div class="configurator__button configurator__button--second configurator__button--trim ">
-												<input type="checkbox" class="configurator__radio configurator__button--second configurator__radio--trim" data-cost="<?php echo $row['trimOptionCost']; ?>" data-checked="false">
-													
+								>
+									
+						</div>
+					</label>
+
+
+						<section class="configurator__switch configurator__switch--second">
+							<?php 
+								foreach($arrayOftrimIfSecondOptionChoosed as $rowSecondOptionsOption){?>
+									<label class="configurator__label">
+										<span class="configurator__switch__title"><?php echo $rowSecondOptionsOption['trimIfSecondOptionChoosedOption'];?></span>
+										<div class="configurator__button configurator__button--second configurator__button--trim ">
+											<input type="checkbox" class="configurator__radio configurator__button--second configurator__radio--trim" data-cost="<?php echo $row['trimOptionCost']; ?>" data-checked="false">
 										</div>
-										</label>
-								<?php } ?>
-					</div>
+									</label>
+									<?php } ?>
+						</section>
+
+
+				</section>
 
 				<?php 
-								
+							
 				} ?>
 			</aside>
 		</div>
@@ -123,13 +128,14 @@ get_header();
 					$arrayOfAdditional = CFS()->get('configuratorAdditional');
 					foreach ($arrayOfAdditional as $row) {
 					?>
-						<label class="configurator__switch"><?php echo $row['configuratorAdditionalName']; ?>
-							<div class="configurator__button configurator__button--slider">
-								<input type="checkbox" class="configurator__checkbox" data-cost="<?php echo $row['configuratorAdditionalCost']; ?>" data-checked="false" data-positionX="<?php echo $row['configuratorAdditionalPicturePositionX']."%"; ?>" data-positionY="<?php echo $row['configuratorAdditionalPicturePositionY']."%"; ?>"  data-url="<?php echo $row['configuratorAdditionalPicture'] ?>">
-								<span class="configurator__checkbox__slider"></span>
-							</div>
-						</label>
-
+						<section class="configurator__switch">
+							<label class="configurator__label"><?php echo $row['configuratorAdditionalName']; ?>
+								<div class="configurator__button configurator__button--slider">
+									<input type="checkbox" class="configurator__checkbox" data-cost="<?php echo $row['configuratorAdditionalCost']; ?>" data-checked="false" data-positionX="<?php echo $row['configuratorAdditionalPicturePositionX']."%"; ?>" data-positionY="<?php echo $row['configuratorAdditionalPicturePositionY']."%"; ?>"  data-url="<?php echo $row['configuratorAdditionalPicture'] ?>">
+									<span class="configurator__checkbox__slider"></span>
+								</div>
+							</label>
+						</section>
 					<?php } ?>
 				</aside>
 
